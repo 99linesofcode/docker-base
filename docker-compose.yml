@@ -1,33 +1,23 @@
 services:
   devcontainer:
     build:
+      args:
+        - PUID=${PUID:-1000}
+        - PGID=${PGID:-1000}
+        - TZ=${TIMEZONE:-Europe/Amsterdam}
       context: .
       dockerfile: ./devcontainer/Dockerfile
       # See https://docs.docker.com/compose/compose-file/build/#ssh
       ssh:
         - default # lets the builder connect to the default SSH agent
-      args:
-        - PUID=${PUID:-1000}
-        - PGID=${PGID:-1000}
-        - TZ=${TIMEZONE:-Europe/Amsterdam}
     container_name: ${APP_NAME}-devcontainer
-    tty: true
     extra_hosts:
       - "host.docker.internal:host-gateway" # for accessing the host from inside the container
-    volumes:
-      - $HOME/.ssh:/config/.ssh:ro # the SSH agent will need access to your configuration
-      - $HOME/.npmrc:/config/.npmrc # necessary when installing packages from a private repository
-      - $HOME/.config/composer/auth.json:/config/.config/composer/auth.json # necessary when installing packages from a private repository
-      # - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
-      # - ../:/app # NOTE: define in child
+    tty: true
+    working_dir: /app
 
   meilisearch:
     container_name: ${APP_NAME}-meilisearch
-    image: getmeili/meilisearch:latest
-    ports:
-      - ${FORWARD_MEILISEARCH_PORT:-7700}:7700
-    volumes:
-      - meilisearch:/meili_data
     healthcheck:
       test:
         [
@@ -37,51 +27,50 @@ services:
           "--spider",
           "http://localhost:7700/health",
         ]
-      retries: 3
       timeout: 5s
+      retries: 3
+    image: getmeili/meilisearch:latest
+    ports:
+      - ${FORWARD_MEILISEARCH_PORT:-7700}:7700
+    restart: unless-stopped
 
   mysql:
     container_name: ${APP_NAME}-mysql
-    image: mysql/mysql-server:8.0
-    ports:
-      - ${FORWARD_DB_PORT:-3306}:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_ROOT_HOST=%
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
-      retries: 3
       timeout: 5s
+      retries: 3
+    image: mysql/mysql-server:8.0
+    ports:
+      - ${FORWARD_DB_PORT:-3306}:3306
+    restart: unless-stopped
 
   # FIXME: serve different urls for process.browser and SSR to avoid CORS issues when SSR
   # FIXME: dont volume mount /node_modules to drastically improve performance
   nodejs:
+    command: npm run dev
     container_name: ${APP_NAME}-nodejs
-    image: node:alpine
-    user: node
-    working_dir: /var/www/html
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    ports:
-      - ${FORWARD_NODE_PORT:-3000}:3000
-      - ${FORWARD_VITE_PORT:-24678}:24678
     environment:
       - NODE_ENV=${APP_ENV:-development}
       - NUXT_HOST=nodejs
       - NUXT_PORT=${FORWARD_NODE_PORT:-3000}
-    # volumes: # NOTE: define in child
-    #   - .:/var/www/html
-    command: npm run dev
-    # depends_on: # NOTE: cannot be used when extending, extract to child
-    #   - nginx
-    #   - frankenphp
-    #   - ruby
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    image: node:alpine
+    ports:
+      - ${FORWARD_NODE_PORT:-3000}:3000
+      - ${FORWARD_VITE_PORT:-24678}:24678
+    restart: unless-stopped
+    user: node
+    working_dir: /var/www/html
 
   phpmyadmin:
-    image: phpmyadmin:latest
     container_name: ${APP_NAME}-phpmyadmin
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
@@ -90,20 +79,22 @@ services:
       - PMA_HOST=${APP_NAME}-mysql
       - PMA_PMADB=phpmyadmin
       - UPLOAD_LIMIT=512M
-    restart: unless-stopped
-    ports:
-      - ${FORWARD_PHPMYADMIN_PORT:-8888}:80
     healthcheck:
       test: ["CMD", "curl", "-Ss", "http://localhost/robots.txt"]
-      retries: 3
       timeout: 5s
+      retries: 3
+    image: phpmyadmin:latest
+    ports:
+      - ${FORWARD_PHPMYADMIN_PORT:-8888}:80
+    restart: unless-stopped
 
   redis:
     container_name: ${APP_NAME}-redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 5s
+      retries: 3
     image: redis:alpine
     ports:
       - ${FORWARD_REDIS_PORT:-6379}:6379
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      retries: 3
-      timeout: 5s
+    restart: unless-stopped
