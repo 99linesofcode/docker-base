@@ -7,7 +7,7 @@ Docker Base is a collection of services and containers pulled in and shared with
 1. Pull into your docker configuration using `git submodule add https://github.com/99linesofcode/docker-php.git base`;
 1. Use the services relevant to your environment through `service.extends`;
 
-Almost all the relevant configuration is done in/from the `docker-compose.yml` file. Take a look at [docker-php](https://github.com/99linesofcode/docker-php) if you want an example of how to correctly work with this repository.
+Almost all the relevant configuration is done in/from the `docker-compose.yaml` file. Take a look at [docker-php](https://github.com/99linesofcode/docker-php) if you want an example of how to correctly work with this repository.
 
 ## Contributing to docker-base
 
