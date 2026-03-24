@@ -1,6 +1,6 @@
 # docker-base
 
-Docker Base is a collection of services and containers pulled in and shared with my programming language specific environments. It is pulled into those repositories as a git submodule and expanded upon using [Docker Compose Extend](https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/).
+A collection of services and containers pulled in and shared with my programming language specific environments. It is pulled into those repositories as a git submodule and expanded upon using [Docker Compose Extend](https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/).
 
 ## How to use
 
@@ -23,4 +23,4 @@ Please review [the security policy](https://github.com/99linesofcode/.github?tab
 
 ## License
 
-This software is open source and licensed under the [MIT license](https://github.com/99linesofcode/docker-base?tab=MIT-1-ov-file)
+This software is open source and licensed under the [MIT license](https://github.com/99linesofcode/docker-base?tab=MIT-1-ov-file).
