@@ -1,4 +1,18 @@
-# 0.1.0 (2025-10-15)
+# [0.2.0](https://github.com/99linesofcode/docker-base/compare/v0.1.0...v0.2.0) (2026-03-25)
+
+
+### Bug Fixes
+
+* **dependabot:** time should be of type string instead of int ([8d06bc6](https://github.com/99linesofcode/docker-base/commit/8d06bc6498f085ce84a8b3b19f86809bdc266992))
+
+
+### Features
+
+* **dependabot:** automatically manage submodules and docker file updates ([08e5065](https://github.com/99linesofcode/docker-base/commit/08e506534fc00422722859ae9ef81b600dadd7f4))
+
+
+
+# [0.1.0](https://github.com/99linesofcode/docker-base/compare/cd2fe87988361c98304fe622c53d4ff680af8f1e...v0.1.0) (2025-10-15)
 
 
 ### Bug Fixes
