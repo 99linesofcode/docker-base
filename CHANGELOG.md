@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/99linesofcode/docker-base/compare/v0.2.0...v0.2.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* **dependabot:** introduce dependency cooldown to mitigate supply chain attacks ([973d468](https://github.com/99linesofcode/docker-base/commit/973d4680687c4bfdba25368b74d9689fbf8fcae7))
+
+
+
 # [0.2.0](https://github.com/99linesofcode/docker-base/compare/v0.1.0...v0.2.0) (2026-03-25)
 
 
