@@ -12,7 +12,7 @@ services:
         - default # lets the builder connect to the default SSH agent
     container_name: ${APP_NAME}-devcontainer
     extra_hosts:
-      - "host.docker.internal:host-gateway" # for accessing the host from inside the container
+      - 'host.docker.internal:host-gateway' # for accessing the host from inside the container
     tty: true
     working_dir: /app
 
@@ -21,11 +21,11 @@ services:
     healthcheck:
       test:
         [
-          "CMD",
-          "wget",
-          "--no-verbose",
-          "--spider",
-          "http://localhost:7700/health",
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--spider',
+          'http://localhost:7700/health',
         ]
       timeout: 5s
       retries: 3
@@ -43,7 +43,7 @@ services:
       - MYSQL_ROOT_HOST=%
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+      test: ['CMD', 'mysqladmin', 'ping', '-p${DB_PASSWORD}']
       timeout: 5s
       retries: 3
     image: mysql/mysql-server:8.0
@@ -80,7 +80,7 @@ services:
       - PMA_PMADB=phpmyadmin
       - UPLOAD_LIMIT=512M
     healthcheck:
-      test: ["CMD", "curl", "-Ss", "http://localhost/robots.txt"]
+      test: ['CMD', 'curl', '-Ss', 'http://localhost/robots.txt']
       timeout: 5s
       retries: 3
     image: phpmyadmin:latest
@@ -91,7 +91,7 @@ services:
   redis:
     container_name: ${APP_NAME}-redis
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       timeout: 5s
       retries: 3
     image: redis:alpine
