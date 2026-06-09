@@ -46,7 +46,7 @@ services:
       test: ['CMD', 'mysqladmin', 'ping', '-p${DB_PASSWORD}']
       timeout: 5s
       retries: 3
-    image: mysql/mysql-server:8.0
+    image: mysql/mysql-server:8.0.32
     ports:
       - ${FORWARD_DB_PORT:-3306}:3306
     restart: unless-stopped
