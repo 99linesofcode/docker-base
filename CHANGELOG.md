@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/99linesofcode/docker-base/compare/v0.2.1...v0.2.2) (2026-06-09)
+
+
+### Bug Fixes
+
+* **deps:** bump mysql/mysql-server from 8.0 to 8.0.32 ([ecb0ad2](https://github.com/99linesofcode/docker-base/commit/ecb0ad23971ac7992ad0ddca56ff6dab5385e3c7))
+
+
+
 ## [0.2.1](https://github.com/99linesofcode/docker-base/compare/v0.2.0...v0.2.1) (2026-04-02)
 
 
