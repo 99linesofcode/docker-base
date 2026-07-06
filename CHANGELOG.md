@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/99linesofcode/docker-base/compare/v0.2.2...v0.2.3) (2026-07-06)
+
+
+### Bug Fixes
+
+* **github:** automatic updates workflow was renamed ([27bdf34](https://github.com/99linesofcode/docker-base/commit/27bdf34a80b7598a0c9f878dee3aaa6caba70d2c))
+
+
+
 ## [0.2.2](https://github.com/99linesofcode/docker-base/compare/v0.2.1...v0.2.2) (2026-06-09)
 
 
