@@ -1,16 +1,24 @@
 # git-skeleton
 
-This repository is the starting point for my Git repositories. It allows me to configure and update common configuration files across all my repositories using such tools as [multi-gitter](https://github.com/lindell/multi-gitter).
+The starting point for my Git repositories. It provides the common configuration
+files (`.editorconfig`, `.prettierrc`, `.gitignore`, `.ignore`) that every
+repository shares.
 
-Some ecosystems and projects have their own dedicated skeleton repositories that build upon this one and might serve as a better jumping off point. You can find those at https://github.com/99linesofcode?tab=repositories&q=skeleton.
+Some ecosystems and projects have their own dedicated skeleton repositories
+that build upon this one and might serve as a better jumping off point. You can
+find those at https://github.com/99linesofcode?tab=repositories&q=skeleton.
 
 ## How to use
 
-1. Git initialize `git init`;
-1. Add origin `git remote add origin <REPOSITORY>`
-1. Add the skeleton as a secondary remote `git remote add git-skeleton git@github.com:99linesofcode/git-skeleton.git`;
-1. Update local repository using `git fetch skeleton`;
-1. Commit changes to the package repository `git rebase skeleton/main`.
+1. `git init`
+2. `git remote add origin <REPOSITORY>`
+3. `git remote add git-skeleton git@github.com:99linesofcode/git-skeleton.git`
+4. `git fetch git-skeleton`
+5. `git rebase git-skeleton/main`
+
+Updates flow the same way: `git fetch git-skeleton && git rebase git-skeleton/main`.
+Conflicts on rebase are the divergence points — resolve them by keeping your
+repo's override where it differs from the shared default.
 
 ## Contributing
 
