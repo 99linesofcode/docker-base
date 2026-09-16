@@ -29,7 +29,7 @@ services:
         ]
       timeout: 5s
       retries: 3
-    image: getmeili/meilisearch:latest
+    image: getmeili/meilisearch:v1.53.2
     ports:
       - ${FORWARD_MEILISEARCH_PORT:-7700}:7700
     restart: unless-stopped
@@ -62,7 +62,7 @@ services:
       - NUXT_PORT=${FORWARD_NODE_PORT:-3000}
     extra_hosts:
       - host.docker.internal:host-gateway
-    image: node:alpine
+    image: node:26.8.2-alpine
     ports:
       - ${FORWARD_NODE_PORT:-3000}:3000
       - ${FORWARD_VITE_PORT:-24678}:24678
@@ -83,7 +83,7 @@ services:
       test: ['CMD', 'curl', '-Ss', 'http://localhost/robots.txt']
       timeout: 5s
       retries: 3
-    image: phpmyadmin:latest
+    image: phpmyadmin:5.2.3
     ports:
       - ${FORWARD_PHPMYADMIN_PORT:-8888}:80
     restart: unless-stopped
@@ -94,7 +94,7 @@ services:
       test: ['CMD', 'redis-cli', 'ping']
       timeout: 5s
       retries: 3
-    image: redis:alpine
+    image: redis:8.10.1-alpine
     ports:
       - ${FORWARD_REDIS_PORT:-6379}:6379
     restart: unless-stopped
