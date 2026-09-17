@@ -65,7 +65,7 @@ services:
       - NUXT_PORT=${FORWARD_NODE_PORT:-3000}
     extra_hosts:
       - host.docker.internal:host-gateway
-    image: node:26.8.2-alpine
+    image: node:26.9.0-alpine
     ports:
       - ${FORWARD_NODE_PORT:-3000}:3000
       - ${FORWARD_VITE_PORT:-24678}:24678
