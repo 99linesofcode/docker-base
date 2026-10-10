@@ -1,11 +1,18 @@
 # docker-base
 
-A collection of services and containers pulled in and shared with my programming language specific environments. It is pulled into those repositories as a git submodule and expanded upon using [Docker Compose Extend](https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/).
+The base tier of my Docker environments: a collection of shared services
+(meilisearch, mysql, nodejs, phpmyadmin, redis) and the Ubuntu-LTS devcontainer.
+A programming-language wrapper (`docker-php`, `docker-ruby`) pulls this
+repository in as a submodule named `base` and expands upon it using
+[Docker Compose Extend](https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/).
 
 ## How to use
 
-1. Pull into your docker configuration using `git submodule add https://github.com/99linesofcode/docker-php.git base`;
-1. Use the services relevant to your environment through `service.extends`;
+This repository is not consumed by a project directly. A language wrapper adds
+it as `base`:
+
+1. From a wrapper repository, add the base as a submodule: `git submodule add https://github.com/99linesofcode/docker-base.git base`;
+1. Extend the services you need with Compose `extends` (`file: ./base/docker-compose.yaml`).
 
 Almost all the relevant configuration is done in/from the `docker-compose.yaml` file. Take a look at [docker-php](https://github.com/99linesofcode/docker-php) if you want an example of how to correctly work with this repository.
 
