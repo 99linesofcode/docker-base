@@ -1,3 +1,13 @@
+## [0.2.5](https://github.com/99linesofcode/docker-base/compare/v0.2.4...v0.2.5) (2026-10-10)
+
+
+### Bug Fixes
+
+* **deps:** bump getmeili/meilisearch from v1.53.2 to v1.54.0 ([#7](https://github.com/99linesofcode/docker-base/issues/7)) ([d260d4d](https://github.com/99linesofcode/docker-base/commit/d260d4de0cdd19810b1036f22738391213714cd1))
+* **deps:** bump node from 26.9.0-alpine to 26.10.0-alpine ([#8](https://github.com/99linesofcode/docker-base/issues/8)) ([fa8f66b](https://github.com/99linesofcode/docker-base/commit/fa8f66bfddb5ea7b21ec97fde31fa1b8232336e7))
+
+
+
 ## [0.2.4](https://github.com/99linesofcode/docker-base/compare/v0.2.3...v0.2.4) (2026-09-17)
 
 
@@ -31,20 +41,6 @@
 ### Bug Fixes
 
 * **dependabot:** introduce dependency cooldown to mitigate supply chain attacks ([973d468](https://github.com/99linesofcode/docker-base/commit/973d4680687c4bfdba25368b74d9689fbf8fcae7))
-
-
-
-# [0.2.0](https://github.com/99linesofcode/docker-base/compare/v0.1.0...v0.2.0) (2026-03-25)
-
-
-### Bug Fixes
-
-* **dependabot:** time should be of type string instead of int ([8d06bc6](https://github.com/99linesofcode/docker-base/commit/8d06bc6498f085ce84a8b3b19f86809bdc266992))
-
-
-### Features
-
-* **dependabot:** automatically manage submodules and docker file updates ([08e5065](https://github.com/99linesofcode/docker-base/commit/08e506534fc00422722859ae9ef81b600dadd7f4))
 
 
 
